@@ -120,7 +120,7 @@ const processCompanies = async (domain, hubId, q) => {
         if (new Date() > expirationDate)
           await refreshAccessToken(domain, hubId);
 
-        await new Promise((resolve, reject) =>
+        await new Promise((resolve, _reject) =>
           setTimeout(resolve, 5000 * Math.pow(2, tryCount))
         );
       }
@@ -151,8 +151,7 @@ const processCompanies = async (domain, hubId, q) => {
 
       q.push({
         actionName: isCreated ? 'Company Created' : 'Company Updated',
-        actionDate:
-          new Date(isCreated ? company.createdAt : company.updatedAt) - 2000,
+        actionDate: new Date(isCreated ? company.createdAt : company.updatedAt).toISOString(),
         ...actionTemplate,
       });
     });
@@ -227,7 +226,7 @@ const processContacts = async (domain, hubId, q) => {
         if (new Date() > expirationDate)
           await refreshAccessToken(domain, hubId);
 
-        await new Promise((resolve, reject) =>
+        await new Promise((resolve, _reject) =>
           setTimeout(resolve, 5000 * Math.pow(2, tryCount))
         );
       }
@@ -302,7 +301,7 @@ const processContacts = async (domain, hubId, q) => {
 
       q.push({
         actionName: isCreated ? 'Contact Created' : 'Contact Updated',
-        actionDate: new Date(isCreated ? contact.createdAt : contact.updatedAt),
+        actionDate: new Date(isCreated ? contact.createdAt : contact.updatedAt).toISOString(),
         ...actionTemplate,
       });
     });
@@ -405,7 +404,7 @@ const processMeetings = async (domain, hubId, q) => {
         if (new Date() > expirationDate)
           await refreshAccessToken(domain, hubId);
 
-        await new Promise((resolve, reject) =>
+        await new Promise((resolve, _reject) =>
           setTimeout(resolve, 5000 * Math.pow(2, tryCount))
         );
       }
@@ -451,8 +450,7 @@ const processMeetings = async (domain, hubId, q) => {
 
       const action = {
         actionName: isCreated ? 'Meeting Created' : 'Meeting Updated',
-        actionDate:
-          new Date(isCreated ? meeting.createdAt : meeting.updatedAt) - 2000, // cast to milliseconds, and also be consistent with other actions
+        actionDate: new Date(isCreated ? meeting.createdAt : meeting.updatedAt).toISOString(),
         ...actionTemplate,
       };
 

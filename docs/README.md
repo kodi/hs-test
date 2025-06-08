@@ -13,6 +13,7 @@
 
 - The project could be structured into modules to separate concerns, such as data fetching, processing, and error handling.
 - Using a configuration file for API endpoints and other constants would make the code cleaner and easier to maintain.
+- When implementing this in real-world scenario, we would probably split the code into multiple files, e.g. `processContacts.js`, `processCompanies.js`, etc., and have a main file that orchestrates the execution of these functions.
 
 ##### Performance:
 
@@ -25,6 +26,9 @@
 
 `generateLastModifiedDateFilter` function was using operator: 'GTQ' and 'LTQ' which are not valid operators.
 Instead of `GTQ` and `LTQ`, it should use `GTE` (greater than or equal) and `LTE` (less than or equal).
+
+`processCompanies` had bug with (??) `actionDate` property, where by substracting `-2000` from the date it was causing the date to be casted to a timestamp, which was different from the format `processContacts` was using.
+I unified the dates, so that all of the process functions are using the same format
 
 ### Execution Screenshots
 
