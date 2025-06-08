@@ -1,7 +1,6 @@
 const hubspot = require('@hubspot/api-client');
 const { queue } = require('async');
 const _ = require('lodash');
-const moment = require('moment');
 
 const { filterNullValuesFromObject, goal } = require('./utils');
 const Domain = require('./Domain');
