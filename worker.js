@@ -430,14 +430,14 @@ const processMeetings = async (domain, hubId, q) => {
 
       const actionTemplate = {
         includeInAnalytics: 0,
-        meetingProperties: {
+        meetingProperties: filterNullValuesFromObject({
           contacts: [],
           meeting_id: meeting.id,
           meeting_title: meeting.properties.hs_meeting_title,
           meeting_start_time: meeting.properties.hs_meeting_start_time,
           meeting_end_time: meeting.properties.hs_meeting_end_time,
           meeting_external_url: meeting.properties.hs_meeting_external_url,
-        },
+        }),
       };
 
       const meetingCreatedDate = new Date(meeting.properties.hs_createdate);
